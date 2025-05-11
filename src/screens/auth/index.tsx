@@ -37,25 +37,25 @@ const Auth: FC<Props> = ({ navigation }) => {
     mode: 'onChange',
   });
 
+  useEffect(() => {
+    console.log('Token:', token);
+    if (token) {
+      setValue('token', token);
+    }
+  }, [setValue, token]);
+
   const { getToken, authUser, isLoading } = UseRequest({
     showError: setVisibleDialog,
     setValue,
     navigation,
   });
 
-  useEffect(() => {
-    console.log('Token:', token);
-    if (token) {
-      setValue('token', token);
-    }
-  }, []);
-
   const onToken = useCallback(() => {
     if (!token) {
       return getToken();
     }
     setValue('token', token);
-  }, [token]);
+  }, [getToken, setValue, token]);
 
   return (
     <View style={styles.container}>

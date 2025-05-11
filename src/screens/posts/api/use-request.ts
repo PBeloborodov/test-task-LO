@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-type TypeUseRequest = {};
-export const UsePosts = ({}: TypeUseRequest) => {
+export const UsePosts = () => {
   const [isLoading, seIsLoading] = useState<boolean>(false);
   const getPosts = () => {
     seIsLoading(true);
