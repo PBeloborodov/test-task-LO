@@ -8,7 +8,11 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="auth" component={Auth} />
+      <Stack.Screen
+        name="auth"
+        component={Auth}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
