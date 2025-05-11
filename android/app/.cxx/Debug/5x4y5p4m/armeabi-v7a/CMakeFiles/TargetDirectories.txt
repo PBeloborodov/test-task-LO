@@ -1,0 +1,15 @@
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/CMakeFiles/appmodules.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnflashlist_autolinked_build/CMakeFiles/react_codegen_rnflashlist.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnflashlist_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnflashlist_autolinked_build/CMakeFiles/rebuild_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/safeareacontext_autolinked_build/CMakeFiles/rebuild_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/react_codegen_rnscreens.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnscreens_autolinked_build/CMakeFiles/rebuild_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnsvg_autolinked_build/CMakeFiles/react_codegen_rnsvg.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnsvg_autolinked_build/CMakeFiles/edit_cache.dir
+/Users/pavelbeloborodov/project/test-task-LO/android/app/.cxx/Debug/5x4y5p4m/armeabi-v7a/rnsvg_autolinked_build/CMakeFiles/rebuild_cache.dir

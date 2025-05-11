@@ -5,7 +5,6 @@ import { Controller } from 'react-hook-form';
 import { PropsInput } from './types';
 
 const FormInputText: FC<PropsInput> = ({ control, placeholder, errors, name }) => {
-  console.log('Errors:', errors?.[`${name}`]?.message);
   return (
     <>
       <Controller

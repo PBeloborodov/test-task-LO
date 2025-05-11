@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import Logo from '@img/svg/logo.svg';
 import FormInputText from '@components/ui/input';
 import UIButton from '@components/ui/button';
@@ -26,6 +26,7 @@ const schema = yup.object({
 const Auth: FC<Props> = ({ navigation }) => {
   const [visibleDialog, setVisibleDialog] = useState(false);
   const token = useAppStore((state) => state.token);
+  const clearToken = useAppStore((state) => state.clearToken);
 
   const {
     control,
@@ -38,11 +39,18 @@ const Auth: FC<Props> = ({ navigation }) => {
   });
 
   useEffect(() => {
-    console.log('Token:', token);
     if (token) {
       setValue('token', token);
     }
   }, [setValue, token]);
+
+  const tokenValueForm = useWatch({ control, name: 'token' });
+
+  useEffect(() => {
+    if (!tokenValueForm) {
+      clearToken();
+    }
+  }, [clearToken, setValue, tokenValueForm]);
 
   const { getToken, authUser, isLoading } = UseRequest({
     showError: setVisibleDialog,

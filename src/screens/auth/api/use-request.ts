@@ -12,6 +12,7 @@ type TypeUseRequest = {
   setValue: UseFormSetValue<FormAuth>;
   navigation: NativeStackNavigationProp<TypeStackNavigation, 'auth'>; // Specific to "auth" screen
 };
+
 export const UseRequest = ({ showError, navigation }: TypeUseRequest) => {
   const setToken = useAppStore((state) => state.setToken);
 
