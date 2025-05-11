@@ -10,11 +10,16 @@ import {
 type PropsUIBtn = {
   onPress: () => void;
   textBtn: string;
+  disabled?: boolean;
   style?: StyleProp<ViewStyle>;
 };
-const UIButton: FC<PropsUIBtn> = ({ onPress, textBtn, style }) => {
+const UIButton: FC<PropsUIBtn> = ({ onPress, textBtn, style, disabled }) => {
   return (
-    <TouchableOpacity style={[styles.wraper, style]} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.wraper, disabled && styles.disabled, style]}
+      onPress={onPress}
+      disabled={disabled}
+    >
       <Text style={styles.btn}>{textBtn}</Text>
     </TouchableOpacity>
   );
@@ -35,5 +40,8 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  disabled: {
+    opacity: 0.5,
   },
 });

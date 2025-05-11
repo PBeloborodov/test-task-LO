@@ -9,6 +9,7 @@ const FormInputText: FC<PropsInput> = ({
   errors,
   name,
 }) => {
+  console.log("Errors:", errors?.[`${name}`]?.message);
   return (
     <>
       <Controller
@@ -24,7 +25,9 @@ const FormInputText: FC<PropsInput> = ({
           />
         )}
       />
-      {errors && <Text style={styles.error}>{errors[`${name}`]?.message}</Text>}
+      {errors && (
+        <Text style={styles.error}>{errors?.[`${name}`]?.message}</Text>
+      )}
     </>
   );
 };

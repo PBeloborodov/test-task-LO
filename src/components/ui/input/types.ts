@@ -6,4 +6,5 @@ export type PropsInput = {
   placeholder: string;
   control: Control<FormAuth, any, FormAuth>;
   errors?: FieldErrors<FormAuth>;
+  value?: string;
 };

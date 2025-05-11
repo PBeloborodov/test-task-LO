@@ -1,37 +1,76 @@
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
-import React, { FC } from "react";
-import { useForm } from "react-hook-form";
+import React, { FC, useEffect, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
 import { FormAuth } from "./types";
 import Logo from "@img/svg/logo.svg";
 import FormInputText from "@components/ui/input";
 import UIButton from "@components/ui/button";
+import UIModal from "@components/ui/modal/modal";
+import { UseRequest } from "./api/use-request";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { TypeStackNavigation } from "../navigation"; // Corrected type name
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-type Props = {};
+type Props = NativeStackScreenProps<TypeStackNavigation, "auth">;
 
-const Auth: FC<Props> = () => {
+const schema = yup.object({
+  token: yup
+    .string()
+    .min(600, "ошибка токена, повторите попытку")
+    .required("Обязателено к заполнению"),
+});
+
+const Auth: FC<Props> = ({ navigation }) => {
+  const [visibleDialog, setVisibleDialog] = useState(false);
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm<FormAuth>();
+  } = useForm<FormAuth>({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
-  const onSubmit = (data: FormAuth) => {
-    console.log(data);
-  };
+  const token = useWatch({
+    control,
+    name: "token",
+  });
+  const { getToken, authUser, isLoading } = UseRequest({
+    showError: setVisibleDialog,
+    setValue,
+    navigation,
+  });
+
+  useEffect(() => {
+    console.log("Token:", token);
+    if (!!token) {
+      setValue("token", token);
+    }
+  }, [token]);
 
   return (
     <View style={styles.container}>
       <Logo width={200} height={200} />
+      <Text style={styles.subTitle}>Введите токен или получите его</Text>
       <FormInputText
         name={"token"}
         placeholder="Введите токен"
         control={control}
-        errors={errors?.token}
+        errors={errors}
+        value={token}
       />
       <UIButton
-        onPress={handleSubmit(onSubmit)}
-        textBtn={"Получить токен"}
+        onPress={!!token ? handleSubmit(authUser) : () => getToken()}
+        textBtn={!!token ? "Продолжить" : "Получить токен"}
         style={styles.btn}
+        disabled={isLoading}
+      />
+      <UIModal
+        description="Ошибка авторизации"
+        modalVisible={visibleDialog}
+        closeModal={() => setVisibleDialog(false)}
       />
     </View>
   );
@@ -48,4 +87,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   btn: { marginTop: 20, height: 50 },
+  subTitle: {
+    fontSize: 20,
+    marginTop: 10,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
 });
