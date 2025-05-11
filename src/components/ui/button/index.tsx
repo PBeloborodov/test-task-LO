@@ -1,11 +1,5 @@
-import React, { FC } from "react";
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ViewStyle,
-} from "react-native";
+import React, { FC } from 'react';
+import { StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 
 type PropsUIBtn = {
   onPress: () => void;
@@ -29,17 +23,17 @@ export default UIButton;
 
 const styles = StyleSheet.create({
   wraper: {
-    width: "100%",
-    backgroundColor: "#4B62FD",
+    width: '100%',
+    backgroundColor: '#4B62FD',
     padding: 10,
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   btn: {
-    color: "white",
+    color: 'white',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   disabled: {
     opacity: 0.5,

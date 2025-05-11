@@ -1,5 +1,5 @@
-import { FormAuth } from "@screens/auth/types";
-import { Control, FieldErrors, Path } from "react-hook-form";
+import { FormAuth } from '@screens/auth/types';
+import { Control, FieldErrors, Path } from 'react-hook-form';
 
 export type PropsInput = {
   name: Path<FormAuth>;

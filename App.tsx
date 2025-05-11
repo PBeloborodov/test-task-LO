@@ -1,6 +1,6 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import Navigation from "@screens/navigation";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigation from '@screens/navigation';
 
 function App(): React.JSX.Element {
   return (

@@ -1,35 +1,32 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
 type TypeUseRequest = {};
 export const UsePosts = ({}: TypeUseRequest) => {
   const [isLoading, seIsLoading] = useState<boolean>(false);
-  const getToken = () => {
+  const getPosts = () => {
     seIsLoading(true);
     axios
-      .get("https://api.lo.ink/v1/post/feed", {
+      .get('https://api.lo.ink/v1/post/feed', {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       })
       .then((response) => {
-        console.log("Токен:", response);
+        console.log('Токен:', response);
         if (response.data.data.access_token) {
         } else {
         }
       })
       .catch((error) => {
-        console.error("Ошибка при получении токена:", error);
+        console.error('Ошибка при получении списка постов:', error);
       })
       .finally(() => {
         seIsLoading(false);
       });
   };
 
-  const authUser = () => {
-    // можно реализовать логику авторизации здесь
-    navigation.navigate("posts");
-  };
+  const authUser = () => {};
 
-  return { authUser, getToken, isLoading };
+  return { authUser, getPosts, isLoading };
 };

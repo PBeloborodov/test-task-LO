@@ -1,28 +1,32 @@
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
-import React, { FC, useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
-import { FormAuth } from "./types";
-import Logo from "@img/svg/logo.svg";
-import FormInputText from "@components/ui/input";
-import UIButton from "@components/ui/button";
-import UIModal from "@components/ui/modal/modal";
-import { UseRequest } from "./api/use-request";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { TypeStackNavigation } from "../navigation"; // Corrected type name
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { View, Text, StyleSheet } from 'react-native';
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Logo from '@img/svg/logo.svg';
+import FormInputText from '@components/ui/input';
+import UIButton from '@components/ui/button';
+import UIModal from '@components/ui/modal/modal';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-type Props = NativeStackScreenProps<TypeStackNavigation, "auth">;
+import type { TypeStackNavigation } from '../navigation'; // Corrected type name
+import { UseRequest } from './api/use-request';
+import { FormAuth } from './types';
+import { useAppStore } from '../../store/index';
+
+type Props = NativeStackScreenProps<TypeStackNavigation, 'auth'>;
 
 const schema = yup.object({
   token: yup
     .string()
-    .min(600, "ошибка токена, повторите попытку")
-    .required("Обязателено к заполнению"),
+    .min(600, 'ошибка токена, повторите попытку')
+    .required('Обязателено к заполнению'),
 });
 
 const Auth: FC<Props> = ({ navigation }) => {
   const [visibleDialog, setVisibleDialog] = useState(false);
+  const token = useAppStore((state) => state.token);
+
   const {
     control,
     handleSubmit,
@@ -30,13 +34,9 @@ const Auth: FC<Props> = ({ navigation }) => {
     formState: { errors },
   } = useForm<FormAuth>({
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: 'onChange',
   });
 
-  const token = useWatch({
-    control,
-    name: "token",
-  });
   const { getToken, authUser, isLoading } = UseRequest({
     showError: setVisibleDialog,
     setValue,
@@ -44,10 +44,17 @@ const Auth: FC<Props> = ({ navigation }) => {
   });
 
   useEffect(() => {
-    console.log("Token:", token);
-    if (!!token) {
-      setValue("token", token);
+    console.log('Token:', token);
+    if (token) {
+      setValue('token', token);
     }
+  }, []);
+
+  const onToken = useCallback(() => {
+    if (!token) {
+      return getToken();
+    }
+    setValue('token', token);
   }, [token]);
 
   return (
@@ -55,15 +62,15 @@ const Auth: FC<Props> = ({ navigation }) => {
       <Logo width={200} height={200} />
       <Text style={styles.subTitle}>Введите токен или получите его</Text>
       <FormInputText
-        name={"token"}
+        name={'token'}
         placeholder="Введите токен"
         control={control}
         errors={errors}
         value={token}
       />
       <UIButton
-        onPress={!!token ? handleSubmit(authUser) : () => getToken()}
-        textBtn={!!token ? "Продолжить" : "Получить токен"}
+        onPress={token ? handleSubmit(authUser) : onToken}
+        textBtn={token ? 'Продолжить' : 'Получить токен'}
         style={styles.btn}
         disabled={isLoading}
       />
@@ -82,15 +89,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 200,
-    alignItems: "center",
-    backgroundColor: "#EFEFEF",
+    alignItems: 'center',
+    backgroundColor: '#EFEFEF',
     paddingHorizontal: 20,
   },
   btn: { marginTop: 20, height: 50 },
   subTitle: {
     fontSize: 20,
     marginTop: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 20,
   },
 });

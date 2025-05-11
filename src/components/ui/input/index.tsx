@@ -1,15 +1,11 @@
-import { Text, TextInput, StyleSheet } from "react-native";
-import React, { FC } from "react";
-import { Controller } from "react-hook-form";
-import { PropsInput } from "./types";
+import { Text, TextInput, StyleSheet } from 'react-native';
+import React, { FC } from 'react';
+import { Controller } from 'react-hook-form';
 
-const FormInputText: FC<PropsInput> = ({
-  control,
-  placeholder,
-  errors,
-  name,
-}) => {
-  console.log("Errors:", errors?.[`${name}`]?.message);
+import { PropsInput } from './types';
+
+const FormInputText: FC<PropsInput> = ({ control, placeholder, errors, name }) => {
+  console.log('Errors:', errors?.[`${name}`]?.message);
   return (
     <>
       <Controller
@@ -25,9 +21,7 @@ const FormInputText: FC<PropsInput> = ({
           />
         )}
       />
-      {errors && (
-        <Text style={styles.error}>{errors?.[`${name}`]?.message}</Text>
-      )}
+      {errors && <Text style={styles.error}>{errors?.[`${name}`]?.message}</Text>}
     </>
   );
 };
@@ -36,15 +30,15 @@ export default FormInputText;
 
 const styles = StyleSheet.create({
   input: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    borderColor: "black",
+    borderColor: 'black',
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
   error: {
-    color: "red",
+    color: 'red',
   },
 });
