@@ -1,0 +1,6 @@
+module Pods_TestTaskLO {
+  umbrella header "Pods-TestTaskLO-umbrella.h"
+
+  export *
+  module * { export * }
+}

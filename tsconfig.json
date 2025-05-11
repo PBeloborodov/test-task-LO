@@ -1,0 +1,12 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@img/*": ["./src/img/*"],
+      "*.svg": ["./node_modules/react-native-svg-transformer/src/*"]
+    }
+  }
+}
