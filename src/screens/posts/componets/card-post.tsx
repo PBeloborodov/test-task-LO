@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import React, { FC } from 'react';
+import { PostItem } from '@screens/posts/types';
 
 type TypePost = {
-  message: string;
+  post: PostItem;
 };
 
 const CardPost: FC<TypePost> = ({ post }) => {
@@ -13,7 +14,8 @@ const CardPost: FC<TypePost> = ({ post }) => {
       {!!post.photos?.[0]?.photo && (
         <ImageBackground
           source={{ uri: post.photos?.[0]?.photo?.original }}
-          style={{ width: 200, height: 200 }}
+          style={styles.img}
+          resizeMode={'contain'}
           key={post.photos?.[0]?.photo?.original}
         />
       )}
@@ -36,4 +38,5 @@ const styles = StyleSheet.create({
   author: {
     fontWeight: 'bold',
   },
+  img: { width: '100%', height: 200 },
 });

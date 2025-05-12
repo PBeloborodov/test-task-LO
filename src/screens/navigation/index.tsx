@@ -14,7 +14,17 @@ const Navigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="auth" component={Auth} options={{ headerShown: false }} />
-      <Stack.Screen name="posts" component={Posts} />
+      <Stack.Screen
+        name="posts"
+        component={Posts}
+        options={{
+          headerStyle: {
+            backgroundColor: '#4B62FD',
+          },
+          headerTintColor: '#fff',
+          headerBackTitle: 'Назад',
+        }}
+      />
     </Stack.Navigator>
   );
 };
